@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Time_OFF_System.Models;
 
 namespace Time_OFF_System.Data
 {
     public class AppDbContext:IdentityDbContext<AppUser>
     {
-        
+        public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+        {
+        }
     }
 }
