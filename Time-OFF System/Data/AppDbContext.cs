@@ -5,6 +5,6 @@ namespace Time_OFF_System.Data
 {
     public class AppDbContext:IdentityDbContext<AppUser>
     {
-
+        
     }
 }
