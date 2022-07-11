@@ -1,5 +1,9 @@
+using eTickets.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Time_OFF_System.Data;
+using Time_OFF_System.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefualtConnectionString")));
+
+//Authentication & Authorization
+builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddAuthentication(options=>options.DefaultScheme= CookieAuthenticationDefaults.AuthenticationScheme);
 
 var app = builder.Build();
 
@@ -23,10 +33,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 app.Run();
