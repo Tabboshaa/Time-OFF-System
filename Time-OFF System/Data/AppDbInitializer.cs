@@ -27,38 +27,70 @@ namespace eTickets.Data
                 if (!await roleManager.RoleExistsAsync(UserRoles.Employee))
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Employee));
 
-                //Users
+                //User Manager opject for all 
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-                string adminUserEmail = "manager@et3.com";
+                //data for first Manager
+                string ManagerUserEmail = "azbassiouny_manager1@et3.com";
+                string ManagerUserPhoneNumber = "01099881399";
+                string ManagerDempartment = "IT Department";
+                double Managersalary = 20000;
+                string ManagerName = "Azbassiouny";
+                DateTime ManagerHireDate = new DateTime(1/1/2011);
 
-                var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
-                if(adminUser == null)
+                var ManagerUser = await userManager.FindByEmailAsync(ManagerUserEmail);
+                if(ManagerUser == null)
                 {
-                    var newAdminUser = new AppUser()
+                    var newManagerUser = new AppUser()
                     {
+                        
                         UserName = "Manager-user1",
-                        Email = adminUserEmail,
-                        EmailConfirmed = true
+                        Email = ManagerUserEmail,
+                        PhoneNumber = ManagerUserPhoneNumber,
+                        Department=ManagerDempartment,
+                        salary=(int)Managersalary,
+                        HireDate=ManagerHireDate,
+                        name=ManagerName,
+                        EmailConfirmed = true,
+                        PhoneNumberConfirmed = true
                     };
-                    await userManager.CreateAsync(newAdminUser, "Coding@1234?");
-                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Manager);
+                    await userManager.CreateAsync(newManagerUser, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newManagerUser, UserRoles.Manager);
                 }
+                //end of first manager
+
+                //manager tow
+        
+                //end od employee one
+
+                // employee tow 
+                string EmployeeEmail2 = "abdalaziz_Employee2@et3.com";
+                string EmployeePhoneNumber2 = "01099881399";
+                string EmployeeDempartment2 = "HR Department";
+                double Employeesalary2 = 8500;
+                string EmployeeName2 = "AbdalazizHR";
+                DateTime EmployeeHireDate2 = new DateTime(1 / 1 / 2011);
 
 
-                string appUserEmail = "employee@et3.com";
-
-                var appUser = await userManager.FindByEmailAsync(appUserEmail);
-                if (appUser == null)
+                var EmployeeUser2 = await userManager.FindByEmailAsync(EmployeeEmail2);
+                if (EmployeeUser2 == null)
                 {
-                    var newAppUser = new AppUser()
+                    var newEmployeeUser2 = new AppUser()
                     {
-                        UserName = "Employee-user1",
-                        Email = appUserEmail,
-                        EmailConfirmed = true
+                       
+                        UserName = "Abdalaziz-Employee-user2",
+                        Email = EmployeeEmail2,
+                        PhoneNumber = EmployeePhoneNumber2,
+                        Department = EmployeeDempartment2,
+                        salary = (int)Employeesalary2,
+                        HireDate = EmployeeHireDate2,
+                        name = EmployeeName2,
+                        EmailConfirmed = true,
+                        PhoneNumberConfirmed = true
                     };
-                    await userManager.CreateAsync(newAppUser, "Coding@1234?");
-                    await userManager.AddToRoleAsync(newAppUser, UserRoles.Employee);
+                    await userManager.CreateAsync(newEmployeeUser2, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newEmployeeUser2, UserRoles.Employee);
                 }
+                //end of employee 2 
             }
         }
     }

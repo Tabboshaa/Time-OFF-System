@@ -47,15 +47,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="    "><i class="bi bi-film"></i> Home</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="    "><i class="bi bi-film"></i> All Requests</a>
+                        </li>
+
                         @if(User.Identity.IsAuthenticated && User.IsInRole("Manager"))
                         {
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="bi bi-gear"></i> Management
                                     </a>
-                                </li>
+                            </li>
+                        }else if(User.Identity.IsAuthenticated)
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="    "><i class="bi bi-film"></i> Requset Time-Off</a>
+                        </li>
                         }
-                        
+
                     </ul>
 
                     <partial name="_Identity.cshtml" />

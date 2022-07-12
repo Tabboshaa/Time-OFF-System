@@ -22,6 +22,10 @@ namespace Time_OFF_System.Controllers
             this.context = context;
         }
 
+        public IActionResult profile(AppuserVM appuserVM)
+        {
+            return View(appuserVM);
+        }
         public IActionResult Login() => View(new LoginVM());
 
         [HttpPost]
@@ -39,7 +43,18 @@ namespace Time_OFF_System.Controllers
                     var result = await signInManager.PasswordSignInAsync(user,loginVM.password,false,false);
                     if(result.Succeeded)
                     {
-                        return RedirectToAction("index","Home");
+
+                        var AppUserVM = new AppuserVM()
+                        {
+                         name=user.name,
+                         Department=user.Department,
+                         salary=user.salary,
+                         email=user.Email,
+                         HireDate=user.HireDate,
+                         PhoneNumber=user.PhoneNumber,
+                         imagePath=user.ImagePath
+                        };
+                        return RedirectToAction(nameof(profile),AppUserVM);
                     }
                     TempData["Erorr"] = "Wrong Password ";
                     return View(loginVM);
