@@ -29,7 +29,7 @@ namespace eTickets.Data
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-                string adminUserEmail = "admin@etickets.com";
+                string adminUserEmail = "manager@et3.com";
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if(adminUser == null)
@@ -45,14 +45,14 @@ namespace eTickets.Data
                 }
 
 
-                string appUserEmail = "user@etickets.com";
+                string appUserEmail = "employee@et3.com";
 
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
                 if (appUser == null)
                 {
                     var newAppUser = new AppUser()
                     {
-                        UserName = "Employee-user",
+                        UserName = "Employee-user1",
                         Email = appUserEmail,
                         EmailConfirmed = true
                     };
