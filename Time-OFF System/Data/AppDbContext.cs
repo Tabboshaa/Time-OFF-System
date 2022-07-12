@@ -9,6 +9,6 @@ namespace Time_OFF_System.Data
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {
         }
-
+        public DbSet<Request> Requests { get; set; }
     }
 }
