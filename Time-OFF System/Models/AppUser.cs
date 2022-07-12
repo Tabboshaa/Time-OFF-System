@@ -10,9 +10,9 @@ namespace Time_OFF_System.Models
         public DateTime HireDate { get; set; }
         public string ImagePath { get; set; }
 
-        List<Request> Requests{ get; set; } 
-        
-        // public AppUser Manager {get; set;}
-        //public ICollection<AppUser> Employees { get; set; }
+      //  public AppUser Manager { get; set; }
+      //public  ICollection<AppUser> Employees { get; set; }
+      public ICollection<Request> Requests{ get; set; } 
+       
     }
 }

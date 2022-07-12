@@ -1,4 +1,6 @@
-﻿namespace Time_OFF_System.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Time_OFF_System.Models
 {
     public class Request
     {
@@ -7,6 +9,7 @@
         public DateTime? startDate { get; set; }
         public DateTime? endDate { get; set; }
         public int status { get; set; }
+        public string EmployeeId { get; set; }  
         public AppUser Employee { get; set; }
     }
 }

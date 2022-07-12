@@ -1,12 +1,20 @@
-﻿namespace Time_OFF_System.Data.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Time_OFF_System.Data.ViewModels
 {
-    public class RequestVM
+    public class CreateRequestVM
     {
-        public int id { get; set; }
+       [DataType(DataType.MultilineText)]
+        [Display(Name = "Subject")]
         public string subject { get; set; }
+
+        [Display(Name = "Start Date")]
+        [DataType(DataType.DateTime)]
         public DateTime? startDate { get; set; }
+        
+        [Display(Name = "End Date")]
+        [DataType(DataType.DateTime)]
         public DateTime? endDate { get; set; }
-        public int status { get; set; }
-        public int EmployeeId { get; set; }
+
     }
 }
