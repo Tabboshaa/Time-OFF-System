@@ -13,6 +13,15 @@ namespace Time_OFF_System.Data
         public DbSet<Request> Requests { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
 
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.Entity<AppUser>()
+        //                .HasOne(x => x.Manager)
+        //                .WithMany(x => x.Employees)
+        //                .HasForeignKey(x => x.ManagerId);
+        //}
+
 
     }
 }

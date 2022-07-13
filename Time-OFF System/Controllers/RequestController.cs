@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Time_OFF_System.Data;
 using Time_OFF_System.Data.ViewModels;
 using Time_OFF_System.Models;
@@ -22,12 +23,30 @@ namespace Time_OFF_System.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var Requests = new List<Request>();
             if (User.IsInRole("Manager"))
             {
+                // get requests where employee.managerId=user.id 
 
+                Requests = await context.Requests.AsQueryable()
+                    .Include(x => x.Employee)
+                    .ToListAsync();
             }
-            var allRequests = await context.Requests.Include(x => x.Employee).ToListAsync();
-            return View(allRequests);
+            else if(User.IsInRole("Employee"))
+            {
+                var userId=userManager.GetUserId(User);
+                  Requests = await context.Requests.AsQueryable()
+                    .Include(x => x.Employee)
+                    .Where(x => x.EmployeeId.Equals(userId))
+                    .ToListAsync();
+            }
+            var response = new IndexRequestsVM()
+            {
+                Rejected = Requests.Where(x => x.status == -1).ToList(),
+                Accepted = Requests.Where(x => x.status == 1).ToList(),
+                Binding = Requests.Where(x => x.status == 0).ToList()
+            };
+            return View(response);
         }
 
         public IActionResult Create()
@@ -53,5 +72,22 @@ namespace Time_OFF_System.Controllers
 
             return RedirectToAction(nameof(Index));
         } 
+
+        public async Task<IActionResult> UpdateStatus(int Id , int status)
+        {
+            var request = await context.Requests.FirstOrDefaultAsync(x=>x.id==Id);
+            if (request!=null)
+            {
+                request.status=status;
+                context.Entry(request).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return RedirectToAction("home", "Error");
+            }
+    
+        }
     }
 }

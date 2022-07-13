@@ -267,7 +267,7 @@ namespace Time_OFF_System.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Requests");
+                    b.ToTable("Requests", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

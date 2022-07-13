@@ -4,9 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Time_OFF_System</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        
+    @*<link rel="stylesheet" href="~/css/NavbarStyle.css/" >*@
     <link rel="stylesheet" href="~/Time_OFF_System.styles.css" asp-append-version="true" />
+
+  
+    <!-- Bootstrap CSS Links -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons Link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
+        integrity="sha384-eoTu3+HydHRBIjnCVwsFyCpUDZHZSFKEJD0mc3ZqSBSb6YhZzRHeiomAUWCstIWo" crossorigin="anonymous">
 </head>
 <body>
 @*    <header>
@@ -34,7 +46,7 @@
     </header>*@
 
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-controller="Movies" asp-action="Index">e t 3</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -44,13 +56,13 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="    "><i class="bi bi-film"></i> Home</a>
+                            <a class="nav-link text-dark sr-only" asp-area="" asp-controller="" asp-action="    "> Home</a>
                         </li>
 
                        @if(User.Identity.IsAuthenticated)
                         {
                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Request" asp-action="Index"><i class="bi bi-film"></i> All Request</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Request" asp-action="Index"> All Request</a>
                          </li>
                         }
 
@@ -64,7 +76,7 @@
                         }else if(User.Identity.IsAuthenticated && User.IsInRole("Employee"))
                         {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Request" asp-action="Create"><i class="bi bi-film"></i> Request Time-Off</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Request" asp-action="Create"> Request Time-Off</a>
                          </li>
                         }
 
@@ -74,6 +86,34 @@
                 </div>
             </div>
         </nav>
+
+     @* <nav class="navbar navbar-expand-lg  p-3">
+        <a class="navbar-brand"  asp-controller="Movies" asp-action="Index">eT3</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link"  asp-controller="" asp-action="    ">Home <span class="sr-only">(current)</span></a>
+                </li>
+                @if(User.Identity.IsAuthenticated)
+                  {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Request" asp-action="Index">All Requests</a>
+                </li>
+                  }
+                else if(User.Identity.IsAuthenticated && User.IsInRole("Employee"))
+                  {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Request" asp-action="Create">Request Time-Off</a>
+                </li>
+                  }
+            </ul>
+        </div>
+          </nav>*@
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">

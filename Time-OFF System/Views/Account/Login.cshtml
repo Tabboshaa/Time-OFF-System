@@ -3,7 +3,8 @@
 @{
     ViewData["Title"]="Login in to your account ";
 }
-<div class="row">
+<link href="~/css/LoginStyle.css" rel="stylesheet" type="text/css" />
+@*<div class="row">
     <div class="col-md-6 offset-3">
         <p>
             <h4>Login in to Your Account </h4>
@@ -38,4 +39,57 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
+
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <div class="row my-5">
+                <div class="col-md-8 offset-2">
+                    <form asp-action="Login">
+                        <fieldset class="p-5  rounded">
+                             <legend class="text-center my-3">Login</legend>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                @if(TempData["Erorr"]!= null)
+                                {
+                                 <div class="form-group alert alert-danger">
+                                        <span><b>Sorry!</b> @TempData["Erorr"] </span>
+                                 </div>
+                                }
+                            <div class="form-group">
+                                <!-- <label class="control-label"></label> -->
+                                <div class="row">
+                                    <div class="col-md-2 px-2 my-2 text-center ">
+                                        <i class="bi-person-fill"></i>
+                                    </div>
+                                    <div class="col-md-10 my-2">
+                                        <input asp-for="Email" class="form-control" />
+                                        
+                                    </div>
+                                </div>
+                               <span asp-validation-for="Email" class="text-danger"></span>
+
+                            <div class="form-group">
+                                <!-- <label class="control-label"></label> -->
+                                <div class="row">
+                                    <div class="col-md-2 text-center px-2 my-4">
+                                        <i class="bi bi-lock-fill fa-lg"></i>
+                                    </div>
+                                    <div class="col-md-10 my-4 ">
+                                        <input asp-for="password" class="form-control" />
+                                    </div>
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="form-group row my-5">
+                                <input class=" col-md-4 btn btn-dark float-right" type="submit" value="Log in" />
+                                <div class="col-md-4"></div>
+                               @* <a class="btn btn-danger col-md-4  float-right">Cancel</a>*@
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

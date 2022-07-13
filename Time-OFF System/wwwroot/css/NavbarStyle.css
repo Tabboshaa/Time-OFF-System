@@ -1,0 +1,32 @@
+nav{
+    background-color: rgb(53, 168, 168) !important;
+}
+nav .navbar-brand{
+    font-size: xx-large;
+    font-weight: 700;
+}
+nav .nav-link,.navbar-brand{
+    color: white !important;
+
+}
+nav .nav-link:hover{
+    border: 1px solid white;
+    border-radius: 35px;
+
+}
+a.btn{
+width: 100px;
+background-color: white;
+margin: 0px 7px;
+}
+#logout{
+    color: rgb(24, 97, 97);
+    font-weight: 600;
+}
+#logout:hover ,#profile:hover{
+    box-shadow: 0px 7px 12px 0px rgb(237, 237, 237);
+}
+#profile {
+    color: rgb(41, 41, 41);
+    font-weight: 600;
+}

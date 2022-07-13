@@ -1,0 +1,11 @@
+fieldset{
+    background-color: rgb(245, 245, 245) !important;
+    color: rgb(57, 57, 57);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+legend{
+    font-size:larger;
+}
+input.btn{
+    background-color: rgb(53, 168, 168) !important;
+}

@@ -1,12 +1,110 @@
-﻿@model IEnumerable<Request>
+﻿@using Time_OFF_System.Data.ViewModels
+@model IndexRequestsVM
 
+    <h1 class="ms-6">All Requests</h1>
 <div class="row">
 
      <div class="col-md-8 offset-1 ">
-        @foreach (var request in @Model)
+         <div class="card-title"> <h2>Binding Requstes</h2></div>
+        @if (@Model.Binding.Count>0)
         {
-            <div clas="card border ">
+            @foreach (var request in @Model.Binding)
+            {
+                <div clas="card border">
+                    <div class="card-body border mb-3">
+                        <div class="card-title border-bottom"> Request # @request.id</div>
+
+                        <div class="form-group">
+                            <label  class="control-label">Employee Name </label>
+                            <input  class="form-control" value="@request.Employee.name" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label  class="control-label">Request Start Date</label>
+                            <input  class="form-control" value="@request.startDate" readonly />
+                        </div> 
+
+                        <div class="form-group">
+                            <label  class="control-label">Request End Date</label>
+                            <input  class="form-control" value="@request.endDate" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label  class="control-label"> Request Subject </label>
+                            <input  class="form-control" value="@request.subject" readonly />
+                        </div> 
+                        <div class="form-group mt-2">
+
+                            @if (User.IsInRole("Manager"))
+                            {
+                                <a asp-controller="Request" asp-action="UpdateStatus" asp-route-id="@request.id" asp-route-status="1" class="btn btn-outline-success" >Accept</a>
+                                <a  asp-controller="Request" asp-action="UpdateStatus"  asp-route-status="-1"  class="btn btn-outline-danger" >Reject</a>
+                            }
+                            else if (User.IsInRole("Employee"))
+                            {
+                                <label class="btn btn-dark text-center">Binding</label>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h6 class="ms-5">No Binding Requests</h6>
+        }
+        <hr style="font-weight:bold"/>
+        <div class="card-title"> <h2>Accepted Requstes</h2></div>
+        
+        @if (@Model.Accepted.Count > 0)
+        {
+            @foreach (var request in @Model.Accepted)
+            {
+                <div clas="card border">
+                    <div class="card-body border mb-3">
+                        <div class="card-title border-bottom"> Request # @request.id</div>
+
+                        <div class="form-group">
+                            <label  class="control-label">Employee Name </label>
+                            <input  class="form-control" value="@request.Employee.name" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label  class="control-label">Request Start Date</label>
+                            <input  class="form-control" value="@request.startDate" readonly />
+                        </div> 
+
+                        <div class="form-group">
+                            <label  class="control-label">Request End Date</label>
+                            <input  class="form-control" value="@request.endDate" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label  class="control-label"> Request Subject </label>
+                            <input  class="form-control" value="@request.subject" readonly />
+                        </div> 
+                        <div class="form-group mt-2">
+                            <label class="btn btn-success text-center">Accepted</label>
+                        </div>
+                    </div>
+                </div>
+            }
+            }
+        else
+            {
+            <h6 class="ms-5">No Accepted Requests</h6>
+                
+            }
+            <hr style="font-weight:bold"/>
+        <div class="card-title"> <h2>Rejected Requstes</h2></div>
+        @if(@Model.Rejected.Count>0)
+        {
+         @foreach (var request in @Model.Rejected)
+        {
+            <div clas="card border">
                 <div class="card-body border mb-3">
+                  <div class="card-title border-bottom"> Request # @request.id</div>
+                     
                      <div class="form-group">
                         <label  class="control-label">Employee Name </label>
                         <input  class="form-control" value="@request.Employee.name" readonly />
@@ -27,13 +125,17 @@
                         <input  class="form-control" value="@request.subject" readonly />
                      </div> 
                     <div class="form-group mt-2">
-                        <input class="btn btn-outline-success float-right" type="submit" value="Accept" />
-                        <a class="btn btn-outline-danger" asp-controller="Home" asp-action="Index">Reject</a>
+                    <label class="btn btn-danger text-center">Rejected</label>
                     </div>
                 </div>
             </div>
         }
-     </div>
+        }else
+        {
+            <h6 class="ms-5">No Rejected Requests</h6>
+
+        }
+    </div>
     
 </div>
 

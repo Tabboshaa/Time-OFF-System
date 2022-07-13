@@ -5,7 +5,7 @@
     ViewData["Title"] = "Details of the actor";
 }
 
-<div class="row text">
+@*<div class="row text">
     <div class="col-md-8 offset-2">
         <p >
             <h1>Welecom @Model.name</h1>
@@ -55,7 +55,72 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
+<link rel="stylesheet" href="~/css/ProfileStyle.css" />
+
+
+    <div class="profile container mt-4 mb-4 p-3 d-flex justify-content-center">
+        <div class="card p-4">
+            <div class=" image d-flex flex-column justify-content-center align-items-center"> 
+                
+                <h3>Welcome @Model.name</h3>
+
+                <!-- Image -->
+                <button class="btn btn-secondary"> 
+                    <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" />
+                </button> 
+
+                <!-- name -->
+                <div class="d-flex flex-row justify-content-center align-items-center gap-2"> 
+                    <span class="idd1"> 
+                        <label asp-for="name"  class="name mt-3 " > </label>  
+                        @Model.name
+                    </span> 
+                </div>
+
+                <!-- email -->
+                <div class="d-flex flex-row justify-content-center align-items-center gap-2"> 
+                    <span class="idd1"> 
+                        <label class="name mt-3 " asp-for="email"></label>  
+                        @Model.email 
+                        <i class="bi bi-mailbox2"></i>
+                    </span> 
+                </div>
+
+                <!-- mobile -->
+                <div class="d-flex flex-row justify-content-center align-items-center gap-2"> 
+                    <span class="idd1"> 
+                        <label asp-for="PhoneNumber" class="name mt-3 "> </label>  
+                            @Model.PhoneNumber
+                        <i class="bi bi-telephone-fill"></i>
+                    </span> 
+                </div>
+
+                <!-- department -->
+                <div class="d-flex flex-row justify-content-center align-items-center gap-2"> 
+                    <span class="idd1">
+                        <label asp-for="Department" class="name mt-3 "> </label>  
+                        @Model.Department
+                        <i class="bi bi-person-badge-fill"></i>
+                    </span> 
+                </div>
+
+                <!-- salary -->
+                <div class="d-flex flex-row justify-content-center align-items-center "> 
+                    <span class="number">
+                        <label asp-for="salary" class="name mt-3 "> </label>  
+                        @Model.salary <span class="follow">EGP  </span>
+                        <i class="bi bi-cash-coin"></i>
+                    </span> 
+                </div>
+
+                <!-- show all -->
+                <div class=" d-flex mt-5"> 
+                    <a asp-controller="Request" asp-action="Create" class="btn  text-light rounded "> Request Time-Off</a> 
+                </div>
+            </div>
+        </div>
+    </div>
 
 @section Scripts{
     <script>
