@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Time_OFF_System.Data;
 using Time_OFF_System.Models;
+using Time_OFF_System.Models.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,12 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options=>options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefualtConnectionString")));
+builder.Services.AddScoped<IRequestRepository,RequestRepository>();
 
 //Authentication & Authorization
 builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddAuthentication(options=>options.DefaultScheme= CookieAuthenticationDefaults.AuthenticationScheme);
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -39,7 +42,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 //AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 app.Run();
